@@ -42,8 +42,6 @@
 
   
   
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitment@0.0.3/style/default.min.css">
-  
   
   
 <meta name="generator" content="Hexo 7.3.0"></head>
@@ -402,7 +400,7 @@
     
   <section id="comments">
   	
-
+      <div id="vcomments"></div>
     
   </section>
 
@@ -542,24 +540,28 @@ window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
 
    
     
-<script src="//imsun.github.io/gitment/dist/gitment.browser.js"></script>
-<script>
-var gitment = new Gitment({
-  // id默认为当前页面url，如果url后带参数或锚点，gitment要重新初始化
-  // https://github.com/imsun/gitment/issues/55
-  // 解决方案：id:window.location.pathname,或者将id设置为当前页面标题
-  id: 'links', 
-  owner: 'qdteng-cn', // 可以是你的GitHub用户名，也可以是github id
-  repo: 'qdteng_talk',
-  oauth: {
-    client_id: 'Ov23liaf9sqBdVM1E9MH',
-    client_secret: 'a477383661c4ad8275be698699ea4da53b3566cd',
-  }
-})
-gitment.render('comments')
-</script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  <script type="text/javascript">
+  var GUEST = ['nick', 'mail', 'link'];
+  var meta = 'nick,mail,link';
+  meta = meta.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#vcomments',
+    verify: true,
+    notify: true,
+    appId: 'ZKKmKLHxwiUWNg4fovE9hRVT-gzGzoHsz',
+    appKey: 'HAs4I1ee5JaWoFDPQVMkzfiw',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: meta,
+    pageSize: '10' || 10,
+    visitor: false
+  });
+  </script>
 
-
+     
 
 
 
