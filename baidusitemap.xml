@@ -1,7 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://qdteng.online/2024/09/23/h2%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%87%E4%BB%BD/</loc>
+    <lastmod>2024-09-23</lastmod>
+  </url>
+  <url>
+    <loc>https://qdteng.online/2024/09/23/mysq%E5%A4%87%E4%BB%BD%E8%84%9A%E6%9C%AC/</loc>
+    <lastmod>2024-09-23</lastmod>
+  </url>
+  <url>
+    <loc>https://qdteng.online/2024/09/23/linux-clickhouse%E5%A4%87%E4%BB%BD%E8%84%9A%E6%9C%AC/</loc>
+    <lastmod>2024-09-23</lastmod>
+  </url>
+  <url>
     <loc>https://qdteng.online/2024/09/22/hello-world/</loc>
-    <lastmod>2024-09-22</lastmod>
+    <lastmod>2024-09-23</lastmod>
   </url>
 </urlset> 
