@@ -1,3 +1,8 @@
+https://qdteng.online/2024/10/16/nginx%E6%97%A5%E5%BF%97/
+https://qdteng.online/2024/10/07/esp32%E7%8E%A9%E4%B8%80%E7%8E%A9/
+https://qdteng.online/2024/10/14/%E8%B0%88%E8%B0%88clickhouse%E4%BC%98%E5%8C%96/
+https://qdteng.online/2024/10/08/redis%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8-linux/
+https://qdteng.online/2024/09/27/%E9%9D%9E%E4%B8%BB%E6%B5%81%E7%9B%91%E6%8E%A7hertzbeat/
 https://qdteng.online/2024/09/27/%E5%BE%AE%E4%BF%A1%E8%BD%AC%E8%B4%A6%E5%88%B0%E9%9B%B6%E9%92%B1/
 https://qdteng.online/2024/09/28/%E5%A5%BD%E4%B8%9C%E8%A5%BFwinlaunch/
 https://qdteng.online/2024/10/06/windows-server%E7%89%88%E6%9C%AC%E5%BC%80%E5%90%AF%E5%A4%9A%E7%94%A8%E6%88%B7%E5%90%8C%E6%97%B6%E8%BF%9C%E7%A8%8B%E7%99%BB%E5%BD%95/
@@ -6,7 +11,6 @@ https://qdteng.online/2024/09/23/mysq%E5%A4%87%E4%BB%BD%E8%84%9A%E6%9C%AC/
 https://qdteng.online/2024/10/03/mysql%E5%AE%89%E8%A3%85-windows/
 https://qdteng.online/2024/09/29/https%E8%87%AA%E5%8A%A8%E6%9B%B4%E6%96%B0/
 https://qdteng.online/2024/09/24/mybatis%E4%B8%AD%E4%BD%BF%E7%94%A8DDL%E8%AF%AD%E5%8F%A5%E5%AF%B9clickhouse%E6%93%8D%E4%BD%9C/
-https://qdteng.online/2024/09/27/%E9%9D%9E%E4%B8%BB%E6%B5%81%E7%9B%91%E6%8E%A7hertzbeat/
 https://qdteng.online/2024/09/25/apache-nifi/
 https://qdteng.online/2024/09/22/hello-world/
 https://qdteng.online/2024/09/23/h2%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%87%E4%BB%BD/
@@ -20,6 +24,10 @@ https://qdteng.online/tags/Nifi/
 https://qdteng.online/tags/Java/
 https://qdteng.online/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/
 https://qdteng.online/tags/ETL/
+https://qdteng.online/tags/IOT/
+https://qdteng.online/tags/ESP32/
+https://qdteng.online/tags/Arduino/
+https://qdteng.online/tags/PlatformIO/
 https://qdteng.online/tags/linux/
 https://qdteng.online/tags/h2/
 https://qdteng.online/tags/%E4%B9%B1%E5%BC%B9/
@@ -41,6 +49,8 @@ https://qdteng.online/tags/naviat/
 https://qdteng.online/tags/%E5%AE%9A%E6%97%B6/
 https://qdteng.online/tags/%E6%8A%A5%E8%A1%A8/
 https://qdteng.online/tags/%E9%82%AE%E4%BB%B6/
+https://qdteng.online/tags/nginx/
+https://qdteng.online/tags/redis/
 https://qdteng.online/tags/server/
 https://qdteng.online/tags/%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/
 https://qdteng.online/tags/winlaunch/
