@@ -1,6 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://qdteng.online/2024/10/23/linux%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85%E5%8C%85%E7%9A%84%E4%B8%8B%E8%BD%BD/</loc>
+    <lastmod>2024-10-23</lastmod>
+  </url>
+  <url>
+    <loc>https://qdteng.online/2024/10/23/%E9%87%8D%E6%96%B0%E8%AE%A4%E8%AF%86%E4%B8%80%E4%B8%8Blinux/</loc>
+    <lastmod>2024-10-23</lastmod>
+  </url>
+  <url>
+    <loc>https://qdteng.online/2024/10/08/redis%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8-linux/</loc>
+    <lastmod>2024-10-23</lastmod>
+  </url>
+  <url>
+    <loc>https://qdteng.online/2024/10/22/%E8%81%8A%E8%81%8A%E4%BC%81%E5%BE%AE%E6%8E%A5%E5%85%A5%E5%BE%AE%E4%BF%A1%E5%AE%9E%E7%8E%B0%E6%B6%88%E6%81%AF%E9%80%9A%E7%9F%A5%E7%9A%84%E6%8E%A8%E9%80%81/</loc>
+    <lastmod>2024-10-22</lastmod>
+  </url>
+  <url>
+    <loc>https://qdteng.online/2024/10/22/springboot%E5%BA%94%E7%94%A8%E5%A6%82%E4%BD%95%E4%BC%98%E9%9B%85%E7%9A%84%E5%85%B3%E9%97%AD/</loc>
+    <lastmod>2024-10-22</lastmod>
+  </url>
+  <url>
     <loc>https://qdteng.online/2024/10/16/nginx%E6%97%A5%E5%BF%97/</loc>
     <lastmod>2024-10-16</lastmod>
   </url>
@@ -11,10 +31,6 @@
   <url>
     <loc>https://qdteng.online/2024/10/14/%E8%B0%88%E8%B0%88clickhouse%E4%BC%98%E5%8C%96/</loc>
     <lastmod>2024-10-15</lastmod>
-  </url>
-  <url>
-    <loc>https://qdteng.online/2024/10/08/redis%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8-linux/</loc>
-    <lastmod>2024-10-08</lastmod>
   </url>
   <url>
     <loc>https://qdteng.online/2024/09/27/%E9%9D%9E%E4%B8%BB%E6%B5%81%E7%9B%91%E6%8E%A7hertzbeat/</loc>
