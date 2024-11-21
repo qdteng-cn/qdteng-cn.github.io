@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang=cn>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>centeros8的时间同步chrony | 业北Online</title>
+  <meta name="description" content="为什么要做时间同步？分布式服务在调用本地时间做数据处理时时间问题显得尤为重要 centeros8 中使用chronyCentOS8上使用Chrony配置NTP服务器，用于同步时间。 它有两个程序，chrony和chronyd， chronyd是守护进程 ，chrony是一个命令行界面程序，可以用来监控chronyd的性能，并修改各种操作参数。 系统会默认安装并启动，如果系统不存在则需要安装此工具库">
+<meta property="og:type" content="article">
+<meta property="og:title" content="centeros8的时间同步chrony">
+<meta property="og:url" content="https://qdteng.online/2024/11/18/centeros8%E7%9A%84%E6%97%B6%E9%97%B4%E5%90%8C%E6%AD%A5chrony/index.html">
+<meta property="og:site_name" content="业北Online">
+<meta property="og:description" content="为什么要做时间同步？分布式服务在调用本地时间做数据处理时时间问题显得尤为重要 centeros8 中使用chronyCentOS8上使用Chrony配置NTP服务器，用于同步时间。 它有两个程序，chrony和chronyd， chronyd是守护进程 ，chrony是一个命令行界面程序，可以用来监控chronyd的性能，并修改各种操作参数。 系统会默认安装并启动，如果系统不存在则需要安装此工具库">
+<meta property="og:locale">
+<meta property="article:published_time" content="2024-11-18T06:49:31.000Z">
+<meta property="article:modified_time" content="2024-11-18T07:22:50.674Z">
+<meta property="article:author" content="qdteng">
+<meta property="article:tag" content="本地时间同步">
+<meta property="article:tag" content="chrony">
+<meta property="article:tag" content="linux集群时间同步">
+<meta name="twitter:card" content="summary">
+  <!-- Canonical links -->
+  <link rel="canonical" href="https://qdteng.online/2024/11/18/centeros8%E7%9A%84%E6%97%B6%E9%97%B4%E5%90%8C%E6%AD%A5chrony/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="业北Online" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+  
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="mailto:qdteng@hotmail.com" target="_blank">
+          <img class="img-circle img-rotate" src="/images/avatar.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">holden</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">Java &amp; Linux</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> Qingdao, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="搜索" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="想要查找什么..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav ">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">首页</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">归档</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">分类</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">标签</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-links">
+          <a href="/links">
+            
+            <i class="icon icon-friendship"></i>
+            
+            <span class="menu-title">友链</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="https://twitter.com" target="_blank" title="Twitter" data-toggle=tooltip data-placement=top><i class="icon icon-twitter"></i></a></li>
+        
+        <li><a href="https://www.behance.net" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="icon icon-behance"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">公告</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>欢迎交流与分享经验!<br/>觉得喜欢可以点击下方打赏鼓励一下，不要在乎多少</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget-body">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/">-运维</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%B9%B1%E5%BC%B9/">乱弹</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%90%8E%E7%AB%AF/">后端</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a><span class="category-list-count">12</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget-body">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/" rel="tag">-linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/AI/" rel="tag">AI</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Apache/" rel="tag">Apache</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Arduino/" rel="tag">Arduino</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ESP32/" rel="tag">ESP32</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ETL/" rel="tag">ETL</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hertzbeat/" rel="tag">Hertzbeat</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IOT/" rel="tag">IOT</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LobeChat/" rel="tag">LobeChat</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nifi/" rel="tag">Nifi</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ollama/" rel="tag">Ollama</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PlatformIO/" rel="tag">PlatformIO</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/acme/" rel="tag">acme</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/actuator/" rel="tag">actuator</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/apt-get-dpkg/" rel="tag">apt-get&#x2F;dpkg</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bat/" rel="tag">bat</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/chrony/" rel="tag">chrony</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/clickhouse/" rel="tag">clickhouse</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/debian/" rel="tag">debian</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/docker/" rel="tag">docker</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/h2/" rel="tag">h2</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/https/" rel="tag">https</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/" rel="tag">java</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/" rel="tag">linux</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux%E9%9B%86%E7%BE%A4%E6%97%B6%E9%97%B4%E5%90%8C%E6%AD%A5/" rel="tag">linux集群时间同步</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mybatis/" rel="tag">mybatis</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/" rel="tag">mysql</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql5-7-36/" rel="tag">mysql5.7.36</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/naviat/" rel="tag">naviat</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nginx/" rel="tag">nginx</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/" rel="tag">redis</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rpm-yum/" rel="tag">rpm&#x2F;yum</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/server/" rel="tag">server</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shell/" rel="tag">shell</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/springboot/" rel="tag">springboot</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/wecht-pay/" rel="tag">wecht pay</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/windows/" rel="tag">windows</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/winlaunch/" rel="tag">winlaunch</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%B9%B1%E5%BC%B9/" rel="tag">乱弹</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1/" rel="tag">企业微信</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%A4%9A%E6%95%B0%E6%8D%AE%E6%BA%90/" rel="tag">多数据源</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/" rel="tag">大数据</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%A4%A7%E6%A8%A1%E5%9E%8B/" rel="tag">大模型</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AE%9A%E6%97%B6/" rel="tag">定时</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BB%BA%E7%AB%99/" rel="tag">建站</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BE%AE%E4%BF%A1/" rel="tag">微信</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BE%AE%E4%BF%A1%E5%91%8A%E8%AD%A6/" rel="tag">微信告警</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BE%AE%E4%BF%A1%E6%94%AF%E4%BB%98/" rel="tag">微信支付</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BE%AE%E4%BF%A1%E6%9C%BA%E5%99%A8%E4%BA%BA/" rel="tag">微信机器人</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BE%AE%E4%BF%A1%E6%B6%88%E6%81%AF%E6%8E%A8%E9%80%81/" rel="tag">微信消息推送</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%8A%A5%E8%A1%A8/" rel="tag">报表</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%AC%E5%9C%B0%E6%97%B6%E9%97%B4%E5%90%8C%E6%AD%A5/" rel="tag">本地时间同步</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%AC%E5%9C%B0%E6%99%BA%E5%BA%93/" rel="tag">本地智库</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%9B%91%E6%8E%A7/" rel="tag">监控</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AC%AC%E4%B8%89%E6%96%B9%E5%BA%94%E7%94%A8%E7%9B%91%E6%8E%A7/" rel="tag">第三方应用监控</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%87%AA%E5%8A%A8%E5%8C%96/" rel="tag">自动化</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BD%AF%E4%BB%B6/" rel="tag">软件</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BF%90%E7%BB%B4/" rel="tag">运维</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/" rel="tag">远程桌面</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%82%AE%E4%BB%B6/" rel="tag">邮件</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget-body tagcloud">
+      <a href="/tags/linux/" style="font-size: 13px;">-linux</a> <a href="/tags/AI/" style="font-size: 13.25px;">AI</a> <a href="/tags/Apache/" style="font-size: 13px;">Apache</a> <a href="/tags/Arduino/" style="font-size: 13px;">Arduino</a> <a href="/tags/ESP32/" style="font-size: 13px;">ESP32</a> <a href="/tags/ETL/" style="font-size: 13px;">ETL</a> <a href="/tags/Hertzbeat/" style="font-size: 13px;">Hertzbeat</a> <a href="/tags/IOT/" style="font-size: 13px;">IOT</a> <a href="/tags/Java/" style="font-size: 13px;">Java</a> <a href="/tags/LobeChat/" style="font-size: 13px;">LobeChat</a> <a href="/tags/Nifi/" style="font-size: 13px;">Nifi</a> <a href="/tags/Ollama/" style="font-size: 13px;">Ollama</a> <a href="/tags/PlatformIO/" style="font-size: 13px;">PlatformIO</a> <a href="/tags/acme/" style="font-size: 13px;">acme</a> <a href="/tags/actuator/" style="font-size: 13px;">actuator</a> <a href="/tags/apt-get-dpkg/" style="font-size: 13px;">apt-get/dpkg</a> <a href="/tags/bat/" style="font-size: 13px;">bat</a> <a href="/tags/chrony/" style="font-size: 13px;">chrony</a> <a href="/tags/clickhouse/" style="font-size: 13.5px;">clickhouse</a> <a href="/tags/debian/" style="font-size: 13.25px;">debian</a> <a href="/tags/docker/" style="font-size: 13px;">docker</a> <a href="/tags/h2/" style="font-size: 13px;">h2</a> <a href="/tags/https/" style="font-size: 13px;">https</a> <a href="/tags/java/" style="font-size: 13.25px;">java</a> <a href="/tags/linux/" style="font-size: 14px;">linux</a> <a href="/tags/linux%E9%9B%86%E7%BE%A4%E6%97%B6%E9%97%B4%E5%90%8C%E6%AD%A5/" style="font-size: 13px;">linux集群时间同步</a> <a href="/tags/mybatis/" style="font-size: 13px;">mybatis</a> <a href="/tags/mysql/" style="font-size: 13.25px;">mysql</a> <a href="/tags/mysql5-7-36/" style="font-size: 13px;">mysql5.7.36</a> <a href="/tags/naviat/" style="font-size: 13px;">naviat</a> <a href="/tags/nginx/" style="font-size: 13px;">nginx</a> <a href="/tags/redis/" style="font-size: 13px;">redis</a> <a href="/tags/rpm-yum/" style="font-size: 13px;">rpm/yum</a> <a href="/tags/server/" style="font-size: 13px;">server</a> <a href="/tags/shell/" style="font-size: 13px;">shell</a> <a href="/tags/springboot/" style="font-size: 13px;">springboot</a> <a href="/tags/wecht-pay/" style="font-size: 13px;">wecht pay</a> <a href="/tags/windows/" style="font-size: 13.75px;">windows</a> <a href="/tags/winlaunch/" style="font-size: 13px;">winlaunch</a> <a href="/tags/%E4%B9%B1%E5%BC%B9/" style="font-size: 13.25px;">乱弹</a> <a href="/tags/%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1/" style="font-size: 13px;">企业微信</a> <a href="/tags/%E5%A4%9A%E6%95%B0%E6%8D%AE%E6%BA%90/" style="font-size: 13px;">多数据源</a> <a href="/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/" style="font-size: 13px;">大数据</a> <a href="/tags/%E5%A4%A7%E6%A8%A1%E5%9E%8B/" style="font-size: 13.25px;">大模型</a> <a href="/tags/%E5%AE%9A%E6%97%B6/" style="font-size: 13px;">定时</a> <a href="/tags/%E5%BB%BA%E7%AB%99/" style="font-size: 13px;">建站</a> <a href="/tags/%E5%BE%AE%E4%BF%A1/" style="font-size: 13px;">微信</a> <a href="/tags/%E5%BE%AE%E4%BF%A1%E5%91%8A%E8%AD%A6/" style="font-size: 13px;">微信告警</a> <a href="/tags/%E5%BE%AE%E4%BF%A1%E6%94%AF%E4%BB%98/" style="font-size: 13px;">微信支付</a> <a href="/tags/%E5%BE%AE%E4%BF%A1%E6%9C%BA%E5%99%A8%E4%BA%BA/" style="font-size: 13px;">微信机器人</a> <a href="/tags/%E5%BE%AE%E4%BF%A1%E6%B6%88%E6%81%AF%E6%8E%A8%E9%80%81/" style="font-size: 13px;">微信消息推送</a> <a href="/tags/%E6%8A%A5%E8%A1%A8/" style="font-size: 13px;">报表</a> <a href="/tags/%E6%9C%AC%E5%9C%B0%E6%97%B6%E9%97%B4%E5%90%8C%E6%AD%A5/" style="font-size: 13px;">本地时间同步</a> <a href="/tags/%E6%9C%AC%E5%9C%B0%E6%99%BA%E5%BA%93/" style="font-size: 13px;">本地智库</a> <a href="/tags/%E7%9B%91%E6%8E%A7/" style="font-size: 13px;">监控</a> <a href="/tags/%E7%AC%AC%E4%B8%89%E6%96%B9%E5%BA%94%E7%94%A8%E7%9B%91%E6%8E%A7/" style="font-size: 13px;">第三方应用监控</a> <a href="/tags/%E8%87%AA%E5%8A%A8%E5%8C%96/" style="font-size: 13px;">自动化</a> <a href="/tags/%E8%BD%AF%E4%BB%B6/" style="font-size: 13px;">软件</a> <a href="/tags/%E8%BF%90%E7%BB%B4/" style="font-size: 13px;">运维</a> <a href="/tags/%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/" style="font-size: 13px;">远程桌面</a> <a href="/tags/%E9%82%AE%E4%BB%B6/" style="font-size: 13px;">邮件</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/11/">November 2024</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/10/">October 2024</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/09/">September 2024</a><span class="archive-list-count">11</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled no-thumbnail">
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/%E4%B9%B1%E5%BC%B9/">乱弹</a>
+              </p>
+              <p class="item-title">
+                <a href="/2024/11/21/IP%E5%BD%A2%E8%B1%A1%E5%92%8CKV%E4%BA%86%E8%A7%A3%E4%B8%80%E4%B8%8B/" class="title">IP形象和KV了解一下</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-11-21T01:38:06.000Z" itemprop="datePublished">2024-11-21</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a>
+              </p>
+              <p class="item-title">
+                <a href="/2024/11/18/centeros8%E7%9A%84%E6%97%B6%E9%97%B4%E5%90%8C%E6%AD%A5chrony/" class="title">centeros8的时间同步chrony</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-11-18T06:49:31.000Z" itemprop="datePublished">2024-11-18</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/%E4%B9%B1%E5%BC%B9/">乱弹</a>
+              </p>
+              <p class="item-title">
+                <a href="/2024/10/24/LobeChat-Ollama%E6%90%AD%E5%BB%BA%E6%9C%AC%E5%9C%B0%E5%A4%A7%E6%A8%A1%E5%9E%8B/" class="title">LobeChat+Ollama搭建本地大模型</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-10-24T03:24:10.000Z" itemprop="datePublished">2024-10-24</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/%E8%BF%90%E7%BB%B4/">-运维</a>
+              </p>
+              <p class="item-title">
+                <a href="/2024/10/23/%E9%87%8D%E6%96%B0%E8%AE%A4%E8%AF%86%E4%B8%80%E4%B8%8Blinux/" class="title">重新认识一下linux</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-10-23T00:01:44.000Z" itemprop="datePublished">2024-10-23</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a>
+              </p>
+              <p class="item-title">
+                <a href="/2024/10/23/linux%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85%E5%8C%85%E7%9A%84%E4%B8%8B%E8%BD%BD/" class="title">linux离线安装包的下载</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-10-22T23:52:47.000Z" itemprop="datePublished">2024-10-23</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+  <aside class="sidebar sidebar-toc collapse   in  " id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    <nav id="toc" class="article-toc">
+      <h3 class="toc-title">文章目录</h3>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%81%9A%E6%97%B6%E9%97%B4%E5%90%8C%E6%AD%A5%EF%BC%9F"><span class="toc-number">1.</span> <span class="toc-text">为什么要做时间同步？</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#centeros8-%E4%B8%AD%E4%BD%BF%E7%94%A8chrony"><span class="toc-number">2.</span> <span class="toc-text">centeros8 中使用chrony</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E4%BA%8E%E9%85%8D%E7%BD%AE%E9%A1%B9%E7%9A%84%E6%8F%8F%E8%BF%B0"><span class="toc-number">2.1.</span> <span class="toc-text">关于配置项的描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%8D%E5%8A%A1%E7%AB%AF%E9%85%8D%E7%BD%AE"><span class="toc-number">2.2.</span> <span class="toc-text">服务端配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%A2%E6%88%B7%E7%AB%AF%E9%85%8D%E7%BD%AE"><span class="toc-number">2.3.</span> <span class="toc-text">客户端配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E4%BA%9B%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="toc-number">2.4.</span> <span class="toc-text">一些常用命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E4%B8%AA%E6%9C%AA%E9%AA%8C%E8%AF%81%E8%BF%87%E7%9A%84%E8%84%9A%E6%9C%AC"><span class="toc-number">2.5.</span> <span class="toc-text">一个未验证过的脚本</span></a></li></ol></li></ol>
+    </nav>
+  </div>
+</aside>
+
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-centeros8的时间同步chrony" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      centeros8的时间同步chrony
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2024/11/18/centeros8%E7%9A%84%E6%97%B6%E9%97%B4%E5%90%8C%E6%AD%A5chrony/" class="article-date">
+	  <time datetime="2024-11-18T06:49:31.000Z" itemprop="datePublished">2024-11-18</time>
+	</a>
+</span>
+        
+  <span class="article-category">
+    <i class="icon icon-folder"></i>
+    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a>
+  </span>
+
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link-link" href="/tags/chrony/" rel="tag">chrony</a>, <a class="article-tag-link-link" href="/tags/linux%E9%9B%86%E7%BE%A4%E6%97%B6%E9%97%B4%E5%90%8C%E6%AD%A5/" rel="tag">linux集群时间同步</a>, <a class="article-tag-link-link" href="/tags/%E6%9C%AC%E5%9C%B0%E6%97%B6%E9%97%B4%E5%90%8C%E6%AD%A5/" rel="tag">本地时间同步</a>
+  </span>
+
+
+        
+	<span class="article-read hidden-xs">
+	    <i class="icon icon-eye-fill" aria-hidden="true"></i>
+	    <span id="busuanzi_container_page_pv">
+			<span id="busuanzi_value_page_pv">0</span>
+		</span>
+	</span>
+
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2024/11/18/centeros8%E7%9A%84%E6%97%B6%E9%97%B4%E5%90%8C%E6%AD%A5chrony/#comments" class="article-comment-link">评论</a></span>
+        
+	
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计: 1k(字)</span>
+	
+	
+		<span class="post-readcount hidden-xs" itemprop="timeRequired">阅读时长: 4(分)</span>
+	
+
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <h1 id="为什么要做时间同步？"><a href="#为什么要做时间同步？" class="headerlink" title="为什么要做时间同步？"></a>为什么要做时间同步？</h1><p>分布式服务在调用本地时间做数据处理时时间问题显得尤为重要</p>
+<h1 id="centeros8-中使用chrony"><a href="#centeros8-中使用chrony" class="headerlink" title="centeros8 中使用chrony"></a>centeros8 中使用chrony</h1><p>CentOS8上使用Chrony配置NTP服务器，用于同步时间。 它有两个程序，chrony和chronyd， chronyd是守护进程 ，chrony是一个命令行界面程序，可以用来监控chronyd的性能，并修改各种操作参数。</p>
+<p>系统会默认安装并启动，如果系统不存在则需要安装此工具库。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dnf -y install chrony</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="关于配置项的描述"><a href="#关于配置项的描述" class="headerlink" title="关于配置项的描述"></a>关于配置项的描述</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"># 使用pool.ntp.org项目中的公共服务器。</span><br><span class="line"># 请考虑加入该池（http://www.pool.ntp.org/join.html）。</span><br><span class="line">pool ntp.aliyun.com iburst</span><br><span class="line"></span><br><span class="line"># 记录系统时钟获取/失去时间的速率。</span><br><span class="line">driftfile /var/lib/chrony/drift</span><br><span class="line"></span><br><span class="line"># 如果系统时钟的偏差大于1秒，则允许在前三次更新中进行 步进调整。</span><br><span class="line">makestep 1.0 3</span><br><span class="line"></span><br><span class="line"># 启用内核对实时时钟（RTC）的同步。</span><br><span class="line">rtcsync</span><br><span class="line"></span><br><span class="line"># 启用所有支持硬件时间戳的接口。</span><br><span class="line">#hwtimestamp *</span><br><span class="line"></span><br><span class="line"># 增加调整系统时钟所需最小可选源的数量。</span><br><span class="line">#minsources 2</span><br><span class="line"></span><br><span class="line"># 允许来自本地网络的NTP客户端访问。</span><br><span class="line">#allow 0.0.0.0/0</span><br><span class="line"></span><br><span class="line"># 即使未与时间源同步，也提供时间服务。</span><br><span class="line">#local stratum 10</span><br><span class="line"></span><br><span class="line"># 指定包含 NTP 认证密钥的文件。</span><br><span class="line"># keyfile /etc/chrony.keys</span><br><span class="line"></span><br><span class="line"># 从系统 tz 数据库获取 TAI-UTC 偏移量和闰秒。</span><br><span class="line">leapsectz right/UTC</span><br><span class="line"></span><br><span class="line"># 指定日志文件的目录。</span><br><span class="line">logdir /var/log/chrony</span><br><span class="line"></span><br><span class="line"># 选择要记录哪些信息。</span><br><span class="line">#log measurements statistics tracking</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="服务端配置"><a href="#服务端配置" class="headerlink" title="服务端配置"></a>服务端配置</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">server 0.cn.pool.ntp.org</span><br><span class="line">server 1.cn.pool.ntp.org</span><br><span class="line">server 2.cn.pool.ntp.org</span><br><span class="line">server 3.cn.pool.ntp.org</span><br><span class="line">server ntp.aliyun.com iburst</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># 如果时间差超过0.1秒，就在前三次的时钟更新时，启动大步跨方式</span><br><span class="line">## chronyd根据需求减慢或加速时间调整，</span><br><span class="line">## 在某些情况下系统时钟可能漂移过快，导致时间调整用时过长。</span><br><span class="line">## 该指令强制chronyd调整时期，大于某个阀值时步进调整系统时钟。</span><br><span class="line">## 只有在因chronyd启动时间超过指定的限制时（可使用负值来禁用限制）没有更多时钟更新时才生效。</span><br><span class="line">makestep 0.1 3</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># 允许哪些网段的客户端访问</span><br><span class="line">allow 0.0.0.0/0</span><br><span class="line"></span><br><span class="line"># 允许访问哪些时间服务器</span><br><span class="line">## all表示允许本机访问所有时间服务器</span><br><span class="line">allow all</span><br><span class="line"></span><br><span class="line"># 服务器绑定ip和端口</span><br><span class="line">bindaddress 0.0.0.0</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">local stratum 10</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="客户端配置"><a href="#客户端配置" class="headerlink" title="客户端配置"></a>客户端配置</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">allow all</span><br><span class="line">server 192.168.30.11 iburst</span><br><span class="line">makestep 0.1 3</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="一些常用命令"><a href="#一些常用命令" class="headerlink" title="一些常用命令"></a>一些常用命令</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">    查看时间同步源：</span><br><span class="line">　　$ chronyc sources -v</span><br><span class="line">　　立即手工同步</span><br><span class="line">　　$chronyc -a makestep</span><br><span class="line">　　查看时间同步源状态：</span><br><span class="line">　　$ chronyc sourcestats -v</span><br><span class="line">　　设置硬件时间</span><br><span class="line">　　硬件时间默认为UTC：</span><br><span class="line">　　$ timedatectl set-local-rtc 1</span><br><span class="line">    查看时间配置信息</span><br><span class="line">    timedatectl </span><br><span class="line">　　启用NTP时间同步：</span><br><span class="line">　　$ timedatectl set-ntp yes</span><br><span class="line">　　校准时间服务器：</span><br><span class="line">　　$ chronyc tracking</span><br><span class="line">    #实时打印当前时间</span><br><span class="line">    </span><br><span class="line">　　最后需要注意的是，配置完/etc/chrony.conf后，需重启chrony服务，否则可能会不生效。</span><br><span class="line">    使用systemctl start chronyd.service　　启动chrony服务</span><br><span class="line">    使用systemctl enable chronyd.service　　设置开机同步时间</span><br><span class="line">    使用systemctl status chronyd.service　　查看服务状态</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="一个未验证过的脚本"><a href="#一个未验证过的脚本" class="headerlink" title="一个未验证过的脚本"></a>一个未验证过的脚本</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/bash</span><br><span class="line"># 配置chrony 作为时间同步的 服务端 和 客户端。</span><br><span class="line"></span><br><span class="line"># 服务端IP(内网)地址。</span><br><span class="line">server_ip=&quot;192.168.30.11&quot;</span><br><span class="line"># 服务端允许哪个IP段访问。</span><br><span class="line">server_allow_ip=&quot;192.168.30.0/24&quot;</span><br><span class="line"># 服务端使用的时间源。</span><br><span class="line">server_source=&quot;pool ntp.aliyun.com iburst&quot;</span><br><span class="line"></span><br><span class="line"># 服务端配置</span><br><span class="line">ntp_server_conf() &#123;</span><br><span class="line">    sed -i &#x27;s/^pool/#pool/&#x27; /etc/chrony.conf</span><br><span class="line">    sed -i &#x27;s/^server/#server/&#x27; /etc/chrony.conf</span><br><span class="line">    echo -e &quot;$&#123;1&#125;\nallow $&#123;2&#125;\nlocal stratum 10&quot; &gt;&gt; /etc/chrony.conf</span><br><span class="line">    systemctl restart chronyd</span><br><span class="line">    firewall-cmd --permanent --zone=public --add-rich-rule=&quot;rule family=&quot;ipv4&quot; source address=&quot;192.168.30.0/24&quot; port port=&quot;123&quot; protocol=&quot;udp&quot; accept&quot;</span><br><span class="line">    firewall-cmd --reload</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"># 客户端配置</span><br><span class="line">ntp_client_conf() &#123;</span><br><span class="line">    sed -i &#x27;s/^pool/#pool/&#x27; /etc/chrony.conf</span><br><span class="line">    sed -i &#x27;s/^server/#server/&#x27; /etc/chrony.conf</span><br><span class="line">    echo &quot;server $1 iburst&quot; &gt;&gt; /etc/chrony.conf</span><br><span class="line">    systemctl restart chronyd</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"># 判断运行该脚本的是服务端还是客户端。</span><br><span class="line">ip addr | grep &quot;$server_ip&quot; &amp;&gt; /dev/null</span><br><span class="line">if [ &quot;$?&quot; -eq 0 ];then</span><br><span class="line">    ntp_server_conf &quot;$&#123;server_source&#125;&quot; &quot;$&#123;server_allow_ip&#125;&quot;</span><br><span class="line">else</span><br><span class="line">    ntp_client_conf &quot;$&#123;server_ip&#125;&quot;</span><br><span class="line">fi</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="https://qdteng.online/2024/11/18/centeros8%E7%9A%84%E6%97%B6%E9%97%B4%E5%90%8C%E6%AD%A5chrony/" title="centeros8的时间同步chrony" target="_blank" rel="external">https://qdteng.online/2024/11/18/centeros8的时间同步chrony/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="mailto:qdteng@hotmail.com" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/avatar.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="mailto:qdteng@hotmail.com" target="_blank"><span class="text-dark">holden</span><small class="ml-1x">Java &amp; Linux</small></a></h3>
+        <div>聊聊？</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+      <div id="vcomments"></div>
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/2024/11/21/IP%E5%BD%A2%E8%B1%A1%E5%92%8CKV%E4%BA%86%E8%A7%A3%E4%B8%80%E4%B8%8B/" title="IP形象和KV了解一下"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/2024/10/24/LobeChat-Ollama%E6%90%AD%E5%BB%BA%E6%9C%AC%E5%9C%B0%E5%A4%A7%E6%A8%A1%E5%9E%8B/" title="LobeChat+Ollama搭建本地大模型"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+    <li class="toggle-toc">
+      <a class="toggle-btn " data-toggle="collapse" href="#collapseToc" aria-expanded="false" title="文章目录" role="button">    <span>[&nbsp;</span><span>文章目录</span>
+        <i class="text-collapsed icon icon-anchor"></i>
+        <i class="text-in icon icon-close"></i>
+        <span>]</span>
+      </a>
+    </li>
+    
+  </ul>
+  
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>赏</span></button>
+  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
+    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
+  </div> -->
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+<!-- Modal -->
+<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content donate">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body">
+        <div class="donate-box">
+          <div class="donate-head">
+            <p>感谢您的支持，我会继续努力的!</p>
+          </div>
+          <div class="tab-content">
+              <div role="tabpanel" class="tab-pane fade active in" id="wechatpay">
+                <div class="donate-payimg">
+                  <img src="/images/donate/wechatpayimg.png" alt="扫码支持" title="扫一扫" />
+                </div>
+                <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+                <p class="text-grey">打开微信扫一扫，即可进行扫码打赏哦</p>
+              </div>
+
+            <div role="tabpanel" class="tab-pane fade " id="alipay">
+              <div class="donate-payimg">
+                <img src="/images/donate/alipayimg.png" alt="扫码支持" title="扫一扫" />
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开支付宝扫一扫，即可进行扫码打赏哦</p>
+            </div>
+
+          </div>
+          <div class="donate-footer">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+                 <li role="presentation" class="active">
+                    <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i> 微信支付</a>
+                  </li>
+
+              <li role="presentation" class="">
+                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay" aria-expanded="true"><i class="icon icon-alipay"></i> 支付宝</a>
+              </li>
+
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="https://twitter.com" target="_blank" title="Twitter" data-toggle=tooltip data-placement=top><i class="icon icon-twitter"></i></a></li>
+        
+        <li><a href="https://www.behance.net" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="icon icon-behance"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <!-- <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script> -->
+<script src="//cdn.cdnhub.io/jquery/1.12.4/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+
+<script src="/js/plugin.min.js"></script>
+
+
+<script src="/js/application.js"></script>
+
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+
+
+
+
+   
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+   
+    
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  <script type="text/javascript">
+  var GUEST = ['nick', 'mail', 'link'];
+  var meta = 'nick,mail,link';
+  meta = meta.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#vcomments',
+    verify: true,
+    notify: true,
+    appId: 'ZKKmKLHxwiUWNg4fovE9hRVT-gzGzoHsz',
+    appKey: 'HAs4I1ee5JaWoFDPQVMkzfiw',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: meta,
+    pageSize: '10' || 10,
+    visitor: false
+  });
+  </script>
+
+     
+
+
+
+
+
+
+
+</body>
+</html>
