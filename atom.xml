@@ -6,7 +6,7 @@
   <link href="https://qdteng.online/atom.xml" rel="self"/>
   
   <link href="https://qdteng.online/"/>
-  <updated>2024-11-27T07:16:20.836Z</updated>
+  <updated>2024-11-27T07:58:21.287Z</updated>
   <id>https://qdteng.online/</id>
   
   <author>
@@ -17,11 +17,11 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>JAVA OCR识别</title>
+    <title>OCR识别</title>
     <link href="https://qdteng.online/2024/11/27/OCR%E8%AF%86%E5%88%AB/"/>
     <id>https://qdteng.online/2024/11/27/OCR%E8%AF%86%E5%88%AB/</id>
     <published>2024-11-27T06:46:23.000Z</published>
-    <updated>2024-11-27T07:16:20.836Z</updated>
+    <updated>2024-11-27T07:58:21.287Z</updated>
     
     <content type="html"><![CDATA[<h1 id="先列举几个牛逼的存在"><a href="#先列举几个牛逼的存在" class="headerlink" title="先列举几个牛逼的存在"></a>先列举几个牛逼的存在</h1><ol><li><strong>Tesseract OCR</strong></li><li><strong>Google Vision API</strong></li><li><strong>Amazon Textract</strong></li><li><strong>Microsoft Azure OCR</strong></li><li><strong>ABBYY FineReader</strong></li><li><strong>JavaOCR</strong></li></ol><h1 id="说一个可以离线的渣渣"><a href="#说一个可以离线的渣渣" class="headerlink" title="说一个可以离线的渣渣"></a>说一个可以离线的渣渣</h1><p>Tesseract OCR</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- Maven依赖 --&gt;</span><br><span class="line">  &lt;dependency&gt;</span><br><span class="line">      &lt;groupId&gt;net.sourceforge.tess4j&lt;/groupId&gt;</span><br><span class="line">      &lt;artifactId&gt;tess4j&lt;/artifactId&gt;</span><br><span class="line">      &lt;version&gt;4.5.1&lt;/version&gt;</span><br><span class="line">  &lt;/dependency&gt;</span><br></pre></td></tr></table></figure><p>翻译出来的内容有点人眼难懂</p><h1 id="再说一个看起来还不错的离线方案"><a href="#再说一个看起来还不错的离线方案" class="headerlink" title="再说一个看起来还不错的离线方案"></a>再说一个看起来还不错的离线方案</h1><h2 id="UmiOCR"><a href="#UmiOCR" class="headerlink" title="UmiOCR"></a>UmiOCR</h2><ul><li><strong>免费</strong>：本项目所有代码开源，完全免费。</li><li><strong>方便</strong>：解压即用，离线运行，无需网络。</li><li><strong>高效</strong>：自带高效率的离线OCR引擎，内置多种语言识别库。</li><li><strong>灵活</strong>：支持命令行、HTTP接口等外部调用方式。</li><li><strong>功能</strong>：截图OCR &#x2F; 批量OCR &#x2F; PDF识别 &#x2F; 二维码</li></ul><h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>开启服务 使用java以http的方式调用识别ocr返回结果</p><p><a href="https://gitee.com/mirrors/Umi-OCR">Umi-OCR: Umi-OCR 是一款免费、开源、可批量的离线 OCR 软件，基于 PaddleOCR，适用于 Windows10&#x2F;11 平台</a></p>]]></content>
     
