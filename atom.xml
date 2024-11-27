@@ -6,7 +6,7 @@
   <link href="https://qdteng.online/atom.xml" rel="self"/>
   
   <link href="https://qdteng.online/"/>
-  <updated>2024-11-21T02:09:17.496Z</updated>
+  <updated>2024-11-27T07:16:20.836Z</updated>
   <id>https://qdteng.online/</id>
   
   <author>
@@ -15,6 +15,62 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>JAVA OCR识别</title>
+    <link href="https://qdteng.online/2024/11/27/OCR%E8%AF%86%E5%88%AB/"/>
+    <id>https://qdteng.online/2024/11/27/OCR%E8%AF%86%E5%88%AB/</id>
+    <published>2024-11-27T06:46:23.000Z</published>
+    <updated>2024-11-27T07:16:20.836Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="先列举几个牛逼的存在"><a href="#先列举几个牛逼的存在" class="headerlink" title="先列举几个牛逼的存在"></a>先列举几个牛逼的存在</h1><ol><li><strong>Tesseract OCR</strong></li><li><strong>Google Vision API</strong></li><li><strong>Amazon Textract</strong></li><li><strong>Microsoft Azure OCR</strong></li><li><strong>ABBYY FineReader</strong></li><li><strong>JavaOCR</strong></li></ol><h1 id="说一个可以离线的渣渣"><a href="#说一个可以离线的渣渣" class="headerlink" title="说一个可以离线的渣渣"></a>说一个可以离线的渣渣</h1><p>Tesseract OCR</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- Maven依赖 --&gt;</span><br><span class="line">  &lt;dependency&gt;</span><br><span class="line">      &lt;groupId&gt;net.sourceforge.tess4j&lt;/groupId&gt;</span><br><span class="line">      &lt;artifactId&gt;tess4j&lt;/artifactId&gt;</span><br><span class="line">      &lt;version&gt;4.5.1&lt;/version&gt;</span><br><span class="line">  &lt;/dependency&gt;</span><br></pre></td></tr></table></figure><p>翻译出来的内容有点人眼难懂</p><h1 id="再说一个看起来还不错的离线方案"><a href="#再说一个看起来还不错的离线方案" class="headerlink" title="再说一个看起来还不错的离线方案"></a>再说一个看起来还不错的离线方案</h1><h2 id="UmiOCR"><a href="#UmiOCR" class="headerlink" title="UmiOCR"></a>UmiOCR</h2><ul><li><strong>免费</strong>：本项目所有代码开源，完全免费。</li><li><strong>方便</strong>：解压即用，离线运行，无需网络。</li><li><strong>高效</strong>：自带高效率的离线OCR引擎，内置多种语言识别库。</li><li><strong>灵活</strong>：支持命令行、HTTP接口等外部调用方式。</li><li><strong>功能</strong>：截图OCR &#x2F; 批量OCR &#x2F; PDF识别 &#x2F; 二维码</li></ul><h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>开启服务 使用java以http的方式调用识别ocr返回结果</p><p><a href="https://gitee.com/mirrors/Umi-OCR">Umi-OCR: Umi-OCR 是一款免费、开源、可批量的离线 OCR 软件，基于 PaddleOCR，适用于 Windows10&#x2F;11 平台</a></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;先列举几个牛逼的存在&quot;&gt;&lt;a href=&quot;#先列举几个牛逼的存在&quot; class=&quot;headerlink&quot; title=&quot;先列举几个牛逼的存在&quot;&gt;&lt;/a&gt;先列举几个牛逼的存在&lt;/h1&gt;&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Tesseract OCR&lt;/strong&gt;&lt;/</summary>
+      
+    
+    
+    
+    <category term="后端" scheme="https://qdteng.online/categories/%E5%90%8E%E7%AB%AF/"/>
+    
+    
+    <category term="java-ocr" scheme="https://qdteng.online/tags/java-ocr/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>谈谈windows系统C盘减肥</title>
+    <link href="https://qdteng.online/2024/11/22/%E8%B0%88%E8%B0%88windows%E7%B3%BB%E7%BB%9FC%E7%9B%98%E5%87%8F%E8%82%A5/"/>
+    <id>https://qdteng.online/2024/11/22/%E8%B0%88%E8%B0%88windows%E7%B3%BB%E7%BB%9FC%E7%9B%98%E5%87%8F%E8%82%A5/</id>
+    <published>2024-11-22T00:41:35.000Z</published>
+    <updated>2024-11-22T01:08:39.272Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="关于休眠"><a href="#关于休眠" class="headerlink" title="关于休眠"></a>关于休眠</h1><p>这个可以借助360等软件关闭系统休眠，估计可以解决10多G的空间，但是对于喜欢使用休眠的同学可能不适用</p><h1 id="关于AppData文件夹"><a href="#关于AppData文件夹" class="headerlink" title="关于AppData文件夹"></a>关于AppData文件夹</h1><p>大部分软件都会将一部分运行、缓存数据存放这个文件夹里，随着系统使用的时间C盘会越来越小并不受控制</p><h2 id="WizTree分析文件占用空间"><a href="#WizTree分析文件占用空间" class="headerlink" title="WizTree分析文件占用空间"></a>WizTree分析文件占用空间</h2><p><img src="https://raw.githubusercontent.com/qdteng-cn/qdteng/main/img/WizTree.png"></p><h2 id="修改注册表"><a href="#修改注册表" class="headerlink" title="修改注册表"></a>修改注册表</h2><hr><p><code>1、</code>首先要在“开始”——“运行”内输入“regedit”打开 注册表 编辑器；</p><p><code>2、</code>在“文件”下拉菜单中的“导出”功能备份好注册表，以防万一；</p><p><code>3、</code>在左侧窗口依次打开：</p><p>　　HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders</p><p><code>4、</code>在右侧窗口里，你看到的“名称”就代表那些特殊的文件夹，“数据”就是它们所对应的默认存储路径。修改默认的路径就可以让你的文件夹移动了；</p><p><img src="https://raw.githubusercontent.com/qdteng-cn/qdteng/main/img/AppData%E6%B3%A8%E5%86%8C%E8%A1%A8%E8%B7%AF%E5%BE%84.jpg"></p><p><code>5、</code>AppData 应用程序数据目录 C：\Documents and Settings\User name\Application Data；</p><p><code>6、</code>修改里面 AppData对应的路径到你自定义的地方，（比如D：\AppData）；</p><h2 id="移动AppData文件夹到非C盘路径"><a href="#移动AppData文件夹到非C盘路径" class="headerlink" title="移动AppData文件夹到非C盘路径"></a>移动AppData文件夹到非C盘路径</h2><p>win10下直接移动appdata文件因为一些应用程序的引用会报错无法移动，按住shift键点击重启电脑进入命令行模式使用命令行移动</p><p><img src="https://raw.githubusercontent.com/qdteng-cn/qdteng/main/img/win10%E9%87%8D%E5%90%AF%E8%BF%9B%E5%85%A5%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%A8%A1%E5%BC%8F.png"></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">#源文件夹目录为d:\src，目标文件夹目录为d:\dst，则具体命令为</span><br><span class="line">copy d:\src d:\dst</span><br><span class="line"># 删除文件夹</span><br><span class="line">rd /s /q C:\Users\Administrator\AppData</span><br><span class="line"># 建立文件夹软连接</span><br><span class="line">mklink /D C:\Users\Administrator\AppData D:\qdteng\AppData</span><br></pre></td></tr></table></figure><p>修改完后重启电脑不出意外您的c盘就正常了</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;关于休眠&quot;&gt;&lt;a href=&quot;#关于休眠&quot; class=&quot;headerlink&quot; title=&quot;关于休眠&quot;&gt;&lt;/a&gt;关于休眠&lt;/h1&gt;&lt;p&gt;这个可以借助360等软件关闭系统休眠，估计可以解决10多G的空间，但是对于喜欢使用休眠的同学可能不适用&lt;/p&gt;
+&lt;h1 id</summary>
+      
+    
+    
+    
+    <category term="乱弹" scheme="https://qdteng.online/categories/%E4%B9%B1%E5%BC%B9/"/>
+    
+    
+    <category term="乱弹" scheme="https://qdteng.online/tags/%E4%B9%B1%E5%BC%B9/"/>
+    
+    <category term="windows" scheme="https://qdteng.online/tags/windows/"/>
+    
+    <category term="windowsC盘满了" scheme="https://qdteng.online/tags/windowsC%E7%9B%98%E6%BB%A1%E4%BA%86/"/>
+    
+    <category term="windows AppData" scheme="https://qdteng.online/tags/windows-AppData/"/>
+    
+  </entry>
   
   <entry>
     <title>IP形象和KV了解一下</title>
@@ -532,66 +588,6 @@
     <category term="微信支付" scheme="https://qdteng.online/tags/%E5%BE%AE%E4%BF%A1%E6%94%AF%E4%BB%98/"/>
     
     <category term="wecht pay" scheme="https://qdteng.online/tags/wecht-pay/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>apache-nifi</title>
-    <link href="https://qdteng.online/2024/09/25/apache-nifi/"/>
-    <id>https://qdteng.online/2024/09/25/apache-nifi/</id>
-    <published>2024-09-25T12:21:05.000Z</published>
-    <updated>2024-10-05T08:51:37.506Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="Apache-NiFi"><a href="#Apache-NiFi" class="headerlink" title="Apache NiFi"></a>Apache NiFi</h1><h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>Apache NiFi 是一个开源的流式数据处理平台，用于收集、转换和路由数据。它使用户能够轻松地创建、监控和监控数据管道，从而实现数据收集、转换和路由。<br>更详细的介绍请移步<a href="https://nifi.apache.org/">Apache NiFi</a> 官网 and <a href="https://blog.csdn.net/jiangshouzhuang/article/details/105609041">Apache NiFi 如何从入门到不放弃</a>  。<br>为什么不是 canal、flume、spark 、flink？ 在我看来不同的业务场景使用的工具也不尽相同，我尤其喜欢nifi的<strong>颜值</strong></p><h2 id="安装部署"><a href="#安装部署" class="headerlink" title="安装部署"></a>安装部署</h2><h3 id="相关环境"><a href="#相关环境" class="headerlink" title="相关环境"></a>相关环境</h3><ul><li>Debian 11</li><li>JDK 22</li><li>NIFI 2.0.0-M3</li></ul><p>至于具体安装步骤 可参考 <a href="https://blog.csdn.net/u013071014/article/details/135702019">NIFI 2.0.0版本HTTPS访问部署</a><br>此处着重强调关于https问题，nifi的https端口为9443，但是默认的证书是自签名的，所以需要修改证书，否则无法访问。<br>因项目中存在多个部署环境，经常会修改nifi的访问ip所以根据需要写了个证书替换的脚本</p><h3 id="nifi-证书替换脚本"><a href="#nifi-证书替换脚本" class="headerlink" title="nifi 证书替换脚本"></a>nifi 证书替换脚本</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">nifi 证书替换脚本</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">!/bin/bash</span></span><br><span class="line">lastip=&quot;192.168.2.4&quot;</span><br><span class="line">newip=&quot;1.1.1.1&quot;</span><br><span class="line">password=&quot;abcdef123456&quot;</span><br><span class="line"></span><br><span class="line">sed -i &quot;s/$lastip/$newip/g&quot; nifi.properties</span><br><span class="line">rm -rf nifi.crt nifi.csr  nifi.key  nifi.p12</span><br><span class="line">openssl genpkey -algorithm RSA -out nifi.key</span><br><span class="line">openssl req -new -key nifi.key -out nifi.csr -subj &quot;/C=US/ST=California/L=San Francisco/O=My Company/CN=$newip&quot;</span><br><span class="line">openssl x509 -req -days 3650 -in nifi.csr -signkey nifi.key -out nifi.crt</span><br><span class="line">openssl pkcs12 -export -in nifi.crt -inkey nifi.key -out nifi.p12 -name nifi -password pass:$password</span><br><span class="line"></span><br></pre></td></tr></table></figure><h2 id="自定义NIFI流程模板"><a href="#自定义NIFI流程模板" class="headerlink" title="自定义NIFI流程模板"></a>自定义NIFI流程模板</h2><h2 id="导入导出"><a href="#导入导出" class="headerlink" title="导入导出"></a>导入导出</h2>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h1 id=&quot;Apache-NiFi&quot;&gt;&lt;a href=&quot;#Apache-NiFi&quot; class=&quot;headerlink&quot; title=&quot;Apache NiFi&quot;&gt;&lt;/a&gt;Apache NiFi&lt;/h1&gt;&lt;h2 id=&quot;介绍&quot;&gt;&lt;a href=&quot;#介绍&quot; class=&quot;head</summary>
-      
-    
-    
-    
-    <category term="后端" scheme="https://qdteng.online/categories/%E5%90%8E%E7%AB%AF/"/>
-    
-    
-    <category term="Apache" scheme="https://qdteng.online/tags/Apache/"/>
-    
-    <category term="Nifi" scheme="https://qdteng.online/tags/Nifi/"/>
-    
-    <category term="Java" scheme="https://qdteng.online/tags/Java/"/>
-    
-    <category term="大数据" scheme="https://qdteng.online/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
-    
-    <category term="ETL" scheme="https://qdteng.online/tags/ETL/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>mybatis中使用DDL语句对clickhouse操作</title>
-    <link href="https://qdteng.online/2024/09/24/mybatis%E4%B8%AD%E4%BD%BF%E7%94%A8DDL%E8%AF%AD%E5%8F%A5%E5%AF%B9clickhouse%E6%93%8D%E4%BD%9C/"/>
-    <id>https://qdteng.online/2024/09/24/mybatis%E4%B8%AD%E4%BD%BF%E7%94%A8DDL%E8%AF%AD%E5%8F%A5%E5%AF%B9clickhouse%E6%93%8D%E4%BD%9C/</id>
-    <published>2024-09-24T11:55:56.000Z</published>
-    <updated>2024-10-06T01:01:59.170Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="前置准备"><a href="#前置准备" class="headerlink" title="前置准备"></a>前置准备</h1><h2 id="mybatisplus-spring-boot-多数据源配置"><a href="#mybatisplus-spring-boot-多数据源配置" class="headerlink" title="mybatisplus spring boot  多数据源配置"></a>mybatisplus spring boot  多数据源配置</h2><h3 id="pom-xml-添加引用"><a href="#pom-xml-添加引用" class="headerlink" title="pom.xml 添加引用"></a>pom.xml 添加引用</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.baomidou<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>dynamic-datasource-spring-boot-starter<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.5.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure><h3 id="application-yml-配置"><a href="#application-yml-配置" class="headerlink" title="application.yml 配置"></a>application.yml 配置</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">spring:</span><br><span class="line">    datasource:</span><br><span class="line">    druid:</span><br><span class="line">        stat-view-servlet:</span><br><span class="line">            enabled: true</span><br><span class="line">    dynamic:</span><br><span class="line">        # 配置全局druid参数，请按需配置</span><br><span class="line">        druid:</span><br><span class="line">            initial-size: 5</span><br><span class="line">            max-active: 8</span><br><span class="line">            min-idle: 3</span><br><span class="line">            max-wait: 1000</span><br><span class="line">            validation-query: &#x27;select 1&#x27;</span><br><span class="line">        primary: master</span><br><span class="line">        datasource:</span><br><span class="line">            #mysql数据库</span><br><span class="line">            master:</span><br><span class="line">                username: root</span><br><span class="line">                password: ***</span><br><span class="line">                url: jdbc:mysql://1.1.1.1:3306/weilai_crawl?useUnicode=true&amp;characterEncoding=utf8&amp;zeroDateTimeBehavior=convertToNull&amp;useSSL=true&amp;serverTimezone=GMT%2B8</span><br><span class="line">                driver-class-name: com.mysql.cj.jdbc.Driver</span><br><span class="line">            #clickhouse数据库</span><br><span class="line">            slave_1:</span><br><span class="line">                url: jdbc:clickhouse://1.1.1.1:8123/default?use_server_time_zone=true&amp;use_server_time_zone=false</span><br><span class="line">                username: default</span><br><span class="line">                password: ****</span><br><span class="line">                driver-class-name: com.clickhouse.jdbc.ClickHouseDriver</span><br></pre></td></tr></table></figure><h1 id="ClickHousee-DDL-问题"><a href="#ClickHousee-DDL-问题" class="headerlink" title="ClickHousee DDL 问题"></a>ClickHousee DDL 问题</h1><h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>在使用mybatis 调用update 方法执行clickhouse的ddl建表语句时出现异常 ,mybatis有sql语句的校验，对于clickhouse语法部分关键字不能识别，所以导致sql解析错误，找了半天mybatisplus组件好像没有解决办法。只能换了个思路通过mybatis获取数据源的jdbc connection，使用JDBC来执行DDL语句</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">Caused by: org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.exceptions.PersistenceException: </span><br><span class="line">### Error updating database.  Cause: com.baomidou.mybatisplus.core.exceptions.MybatisPlusException: Failed to process, Error SQL: CREATE TABLE <span class="title function_">device_data_all_history</span> <span class="params">( `sys_id` String  , `dev_id` String  ,  `create_time` DateTime DEFAULT now()</span> , `insert_time` DateTime DEFAULT <span class="title function_">now</span><span class="params">()</span> , `c1`  String )</span><br><span class="line">ENGINE = MergeTree</span><br><span class="line">PARTITION BY <span class="title function_">toYYYYMMDD</span><span class="params">(create_time)</span></span><br><span class="line">ORDER <span class="title function_">BY</span> <span class="params">(dev_id,</span></span><br><span class="line"><span class="params"> create_time)</span></span><br><span class="line"><span class="type">SETTINGS</span> <span class="variable">index_granularity</span> <span class="operator">=</span> <span class="number">8192</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Caused by: net.sf.jsqlparser.parser.ParseException: Encountered unexpected token: <span class="string">&quot;ORDER&quot;</span> <span class="string">&quot;ORDER&quot;</span></span><br><span class="line">    at line <span class="number">4</span>, column <span class="number">4.</span></span><br><span class="line"></span><br><span class="line">Was expecting one of:</span><br><span class="line"></span><br><span class="line">    <span class="string">&quot;;&quot;</span></span><br><span class="line">    <span class="string">&quot;AS&quot;</span></span><br><span class="line">    <span class="string">&quot;DISABLE&quot;</span></span><br><span class="line">    <span class="string">&quot;ENABLE&quot;</span></span><br><span class="line">    <span class="string">&quot;LIKE&quot;</span></span><br><span class="line">    &lt;EOF&gt;</span><br></pre></td></tr></table></figure><h2 id="解决方式"><a href="#解决方式" class="headerlink" title="解决方式"></a>解决方式</h2><h3 id="mybatisPlus-多数据源获取-JDBC-Connection"><a href="#mybatisPlus-多数据源获取-JDBC-Connection" class="headerlink" title="mybatisPlus 多数据源获取 JDBC Connection"></a>mybatisPlus 多数据源获取 JDBC Connection</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Autowired</span></span><br><span class="line"><span class="keyword">private</span> DynamicRoutingDataSource dynamicRoutingDataSource;</span><br><span class="line"></span><br><span class="line"><span class="comment">//某业务方法</span></span><br><span class="line">.....()&#123;</span><br><span class="line">    <span class="comment">//clickhouse 建表语句</span></span><br><span class="line">    <span class="type">String</span> <span class="variable">sql</span> <span class="operator">=</span><span class="string">&quot;create table ..... &quot;</span> ;</span><br><span class="line">    <span class="comment">//获取数据源 Connection</span></span><br><span class="line">    java.sql.<span class="type">Connection</span> <span class="variable">connection</span> <span class="operator">=</span>   dynamicRoutingDataSource.getDataSource(<span class="string">&quot;slave_1&quot;</span>).getConnection();</span><br><span class="line">    connection.setAutoCommit(<span class="literal">true</span>);</span><br><span class="line">    java.sql.<span class="type">Statement</span> <span class="variable">statement</span> <span class="operator">=</span>connection.createStatement();</span><br><span class="line">    statement.execute(sql);</span><br><span class="line">    statement.close();</span><br><span class="line">    connection.close();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><hr><p>完结</p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h1 id=&quot;前置准备&quot;&gt;&lt;a href=&quot;#前置准备&quot; class=&quot;headerlink&quot; title=&quot;前置准备&quot;&gt;&lt;/a&gt;前置准备&lt;/h1&gt;&lt;h2 id=&quot;mybatisplus-spring-boot-多数据源配置&quot;&gt;&lt;a href=&quot;#mybatisplus-spr</summary>
-      
-    
-    
-    
-    <category term="后端" scheme="https://qdteng.online/categories/%E5%90%8E%E7%AB%AF/"/>
-    
-    
-    <category term="clickhouse" scheme="https://qdteng.online/tags/clickhouse/"/>
-    
-    <category term="mybatis" scheme="https://qdteng.online/tags/mybatis/"/>
-    
-    <category term="多数据源" scheme="https://qdteng.online/tags/%E5%A4%9A%E6%95%B0%E6%8D%AE%E6%BA%90/"/>
     
   </entry>
   
