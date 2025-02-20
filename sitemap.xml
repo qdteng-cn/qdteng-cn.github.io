@@ -325,6 +325,13 @@
   </url>
   
   <url>
+    <loc>https://qdteng.online/tags/java-ocr/</loc>
+    <lastmod>2025-02-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://qdteng.online/tags/Apache/</loc>
     <lastmod>2025-02-20</lastmod>
     <changefreq>weekly</changefreq>
@@ -354,13 +361,6 @@
   
   <url>
     <loc>https://qdteng.online/tags/ETL/</loc>
-    <lastmod>2025-02-20</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://qdteng.online/tags/java-ocr/</loc>
     <lastmod>2025-02-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -458,20 +458,6 @@
   </url>
   
   <url>
-    <loc>https://qdteng.online/tags/apt-get-dpkg/</loc>
-    <lastmod>2025-02-20</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://qdteng.online/tags/rpm-yum/</loc>
-    <lastmod>2025-02-20</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://qdteng.online/tags/clickhouse/</loc>
     <lastmod>2025-02-20</lastmod>
     <changefreq>weekly</changefreq>
@@ -494,6 +480,20 @@
   
   <url>
     <loc>https://qdteng.online/tags/bat/</loc>
+    <lastmod>2025-02-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://qdteng.online/tags/apt-get-dpkg/</loc>
+    <lastmod>2025-02-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://qdteng.online/tags/rpm-yum/</loc>
     <lastmod>2025-02-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -605,20 +605,6 @@
   </url>
   
   <url>
-    <loc>https://qdteng.online/tags/winlaunch/</loc>
-    <lastmod>2025-02-20</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://qdteng.online/tags/%E8%BD%AF%E4%BB%B6/</loc>
-    <lastmod>2025-02-20</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://qdteng.online/tags/server/</loc>
     <lastmod>2025-02-20</lastmod>
     <changefreq>weekly</changefreq>
@@ -627,6 +613,20 @@
   
   <url>
     <loc>https://qdteng.online/tags/%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/</loc>
+    <lastmod>2025-02-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://qdteng.online/tags/winlaunch/</loc>
+    <lastmod>2025-02-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://qdteng.online/tags/%E8%BD%AF%E4%BB%B6/</loc>
     <lastmod>2025-02-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
