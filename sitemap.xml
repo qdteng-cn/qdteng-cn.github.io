@@ -661,27 +661,6 @@
   </url>
   
   <url>
-    <loc>https://qdteng.online/tags/%E5%BE%AE%E4%BF%A1/</loc>
-    <lastmod>2025-02-20</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://qdteng.online/tags/%E5%BE%AE%E4%BF%A1%E6%94%AF%E4%BB%98/</loc>
-    <lastmod>2025-02-20</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://qdteng.online/tags/wecht-pay/</loc>
-    <lastmod>2025-02-20</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://qdteng.online/tags/%E8%A7%86%E9%A2%91%E5%89%AA%E8%BE%91/</loc>
     <lastmod>2025-02-20</lastmod>
     <changefreq>weekly</changefreq>
@@ -704,6 +683,27 @@
   
   <url>
     <loc>https://qdteng.online/tags/HandBrake/</loc>
+    <lastmod>2025-02-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://qdteng.online/tags/%E5%BE%AE%E4%BF%A1/</loc>
+    <lastmod>2025-02-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://qdteng.online/tags/%E5%BE%AE%E4%BF%A1%E6%94%AF%E4%BB%98/</loc>
+    <lastmod>2025-02-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://qdteng.online/tags/wecht-pay/</loc>
     <lastmod>2025-02-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -738,6 +738,13 @@
   </url>
   
   <url>
+    <loc>https://qdteng.online/tags/linux/</loc>
+    <lastmod>2025-02-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://qdteng.online/tags/windowsC%E7%9B%98%E6%BB%A1%E4%BA%86/</loc>
     <lastmod>2025-02-20</lastmod>
     <changefreq>weekly</changefreq>
@@ -746,13 +753,6 @@
   
   <url>
     <loc>https://qdteng.online/tags/windows-AppData/</loc>
-    <lastmod>2025-02-20</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://qdteng.online/tags/linux/</loc>
     <lastmod>2025-02-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
